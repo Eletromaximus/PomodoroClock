@@ -1,0 +1,38 @@
+@font-face {
+    font-family: "DS-DIGIB";
+    src: url(  ./ds_digital/DS-DIGIB.TTF);
+}
+
+body {
+    display: grid;
+    padding: 0%;
+    margin: 0%;
+}
+
+.Timer {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    text-align: center;
+    box-shadow: 5px 5px 5px 5px black;
+    margin: 2.5cm auto auto auto;
+    padding: 0%;
+    border-radius: 50%;
+}
+
+.Title {
+    position: absolute;
+    left: 30%;
+    top: 30%;
+}
+
+.Clock {
+    font-family: DS-DIGIB;
+    font-size: 55px;
+    position: absolute;
+    padding: 0%;
+    margin: 0%;
+    top: 45%;
+    left: 40%;
+
+}
