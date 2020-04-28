@@ -3,6 +3,9 @@
     src: url(  ./ds_digital/DS-DIGIB.TTF);
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+
 body {
     display: grid;
     padding: 0%;
@@ -14,7 +17,8 @@ body {
     width: 600px;
     height: 600px;
     text-align: center;
-    box-shadow: 5px 5px 5px 5px black;
+    align-items: center;
+    box-shadow: 0 0 8px #ea4c89, inset 0 0 32px #e71d27;
     margin: 2.5cm auto auto auto;
     padding: 0%;
     border-radius: 50%;
@@ -34,5 +38,15 @@ body {
     margin: 0%;
     top: 45%;
     left: 40%;
+}
+
+#play-pause {
+    width: 2cm;
+    height: 2cm;
+    left: 43.5%;
+    position: absolute;
+    border-radius: 50%;
+    top: 70%;
+    background-color: transparent;
 
 }
