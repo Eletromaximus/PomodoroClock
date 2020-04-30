@@ -25,12 +25,12 @@ export default function Timer() {
     if (time ===0) {
       if(mode === 'session'){
         setMode('break');
-        setMaxTime(breakTime*60*1000);
         setTime(breakTime*60*1000);
+        setMaxTime(breakTime*60*1000);
       } else if (mode === 'break'){
         setMode('session');
-        setMaxTime(sessionTime*60*1000);
         setTime(sessionTime*60*1000);
+        setMaxTime(sessionTime*60*1000);
       }
     }
   },[time, mode, sessionTime, breakTime,maxTime]);
@@ -44,17 +44,7 @@ export default function Timer() {
     setTime(25 * 60 * 1000)
   }
 
-  function increment () {
-    setTime(time+60000);
-    console.log(time);
-  }
-  function decrement() {
-    if(time>60000){
-      setTime(time-60000);
-      console.log(time);
-    }
-    
-  }
+  
 
 const play = <p>Play</p>;
 const pause = <p>Pause</p>;
@@ -68,9 +58,7 @@ const pause = <p>Pause</p>;
         {isActive? pause: play}
       </button>
       <button id="reset" onClick={() =>{handleReset()}}>Reset</button>
-      <button className="increment" onClick={() =>increment()}>+</button>
-      <button className="decrement" onClick={() =>decrement()}>-</button>
-
+     
       <CircularProgressbar 
         value={maxTime-time} 
         maxValue={maxTime} 
