@@ -12,16 +12,17 @@
     height: 600px;
     text-align: center;
     align-items: center;
-    box-shadow: 0 0 8px #ea4c89, inset 0 0 32px #e71d27;
     margin: 2.5cm auto auto auto;
     padding: 0%;
     border-radius: 50%;
+    color: yellow;
 }
 
 .Title {
     position: absolute;
-    left: 30%;
+    left: 20%;
     top: 30%;
+    font-size: 40px;
 }
 
 .Clock {
@@ -30,7 +31,7 @@
     position: absolute;
     padding: 0%;
     margin: 0%;
-    top: 45%;
+    top: 48%;
     left: 40%;
 }
 
@@ -47,6 +48,10 @@
 
 #reset{
     position: absolute;
-    top: 20%;
-    right: 45%;
+    top: 12%;
+    left: 43.5%;
+    border-radius: 50%;
+    width: 2cm;
+    height: 2cm;
+    background-color: transparent;
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useInterval from '../Hooks/interval';
 
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import moment from 'moment'
 import './index.css';
@@ -55,11 +55,16 @@ const pause = <p>Pause</p>;
         {isActive? pause: play}
       </button>
       <button id="reset" onClick={() =>{handleReset()}}>Reset</button>
+
       <CircularProgressbar 
         value={limit-time} 
         maxValue={limit} 
         text={''} 
         strokeWidth={2} 
+        styles={buildStyles({
+          trailColor: 'white',
+          pathColor: 'yellow'
+        })}
       />
       
     </div>
