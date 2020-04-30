@@ -13,7 +13,7 @@ export default function Timer() {
   const [mode, setMode] = useState<string>('break');
   const [sessionTime, setSessionTime] = useState<number>(25);
   const [breakTime, setBreakTime] = useState<number>(5);
-  const [limit, setLimit] = useState<number>(0);
+  const [maxTime, setMaxTime] = useState<number>(0);
 
   useInterval(() => setTime(time - 1000), isActive ? 1000: 0);
   
@@ -25,16 +25,15 @@ export default function Timer() {
     if (time ===0) {
       if(mode === 'session'){
         setMode('break');
-        setLimit(breakTime*60*1000);
+        setMaxTime(breakTime*60*1000);
         setTime(breakTime*60*1000);
       } else if (mode === 'break'){
         setMode('session');
-        setLimit(sessionTime*60*1000);
+        setMaxTime(sessionTime*60*1000);
         setTime(sessionTime*60*1000);
       }
-      console.log(limit);
     }
-  },[time, mode, sessionTime, breakTime,limit]);
+  },[time, mode, sessionTime, breakTime,maxTime]);
 
   const handleReset = () => {
     
@@ -44,6 +43,19 @@ export default function Timer() {
     setSessionTime(25)
     setTime(25 * 60 * 1000)
   }
+
+  function increment () {
+    setTime(time+60000);
+    console.log(time);
+  }
+  function decrement() {
+    if(time>60000){
+      setTime(time-60000);
+      console.log(time);
+    }
+    
+  }
+
 const play = <p>Play</p>;
 const pause = <p>Pause</p>;
 
@@ -51,19 +63,23 @@ const pause = <p>Pause</p>;
     <div className="Timer">
       <h2 className="Title">Pomodoro Timer</h2>
       <h2 className="Clock">{moment(time).format('mm:ss')}</h2>
+
       <button id="play-pause" onClick={() =>{setIsActive(!isActive)}}>
         {isActive? pause: play}
       </button>
       <button id="reset" onClick={() =>{handleReset()}}>Reset</button>
+      <button className="increment" onClick={() =>increment()}>+</button>
+      <button className="decrement" onClick={() =>decrement()}>-</button>
 
       <CircularProgressbar 
-        value={limit-time} 
-        maxValue={limit} 
+        value={maxTime-time} 
+        maxValue={maxTime} 
+        minValue={1}
         text={''} 
         strokeWidth={2} 
         styles={buildStyles({
-          trailColor: 'white',
-          pathColor: 'yellow'
+          trailColor: 'grey',
+          pathColor: 'rgb(0,255,255)'
         })}
       />
       

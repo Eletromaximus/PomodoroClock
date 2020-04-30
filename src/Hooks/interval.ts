@@ -5,7 +5,6 @@ const useInterval = (callback:any, delay:number) => {
 
   const savedCallback = useRef<any|undefined>();
 
-
   useEffect(
       () => {
           savedCallback.current = callback;
@@ -21,7 +20,7 @@ const useInterval = (callback:any, delay:number) => {
               const id = setInterval(handler, delay);
               return() => clearInterval(id);
           }
-
+        
       },
       [delay]
   );
