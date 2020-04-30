@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import useInterval from '../Hooks/interval';
+
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 import moment from 'moment'
 import './index.css';
 
@@ -10,6 +13,7 @@ export default function Timer() {
   const [mode, setMode] = useState<string>('break');
   const [sessionTime, setSessionTime] = useState<number>(25);
   const [breakTime, setBreakTime] = useState<number>(5);
+  const [limit, setLimit] = useState<number>(0);
 
   useInterval(() => setTime(time - 1000), isActive ? 1000: 0);
   
@@ -21,13 +25,16 @@ export default function Timer() {
     if (time ===0) {
       if(mode === 'session'){
         setMode('break');
+        setLimit(breakTime*60*1000);
         setTime(breakTime*60*1000);
       } else if (mode === 'break'){
         setMode('session');
+        setLimit(sessionTime*60*1000);
         setTime(sessionTime*60*1000);
       }
+      console.log(limit);
     }
-  },[time, mode, sessionTime, breakTime]);
+  },[time, mode, sessionTime, breakTime,limit]);
 
   const handleReset = () => {
     
@@ -44,8 +51,17 @@ const pause = <p>Pause</p>;
     <div className="Timer">
       <h2 className="Title">Pomodoro Timer</h2>
       <h2 className="Clock">{moment(time).format('mm:ss')}</h2>
-  <button id="play-pause" onClick={() =>{setIsActive(!isActive)}}>{isActive? pause: play}</button>
+      <button id="play-pause" onClick={() =>{setIsActive(!isActive)}}>
+        {isActive? pause: play}
+      </button>
       <button id="reset" onClick={() =>{handleReset()}}>Reset</button>
+      <CircularProgressbar 
+        value={limit-time} 
+        maxValue={limit} 
+        text={''} 
+        strokeWidth={2} 
+      />
+      
     </div>
   );
 }
