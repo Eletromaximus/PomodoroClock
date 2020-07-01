@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import useInterval from '../Hooks/interval';
+import useSound from 'use-sound';
 
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import moment from 'moment'
 import './index.css';
+const alarm = './alarm.mp3';
 
 
 export default function Timer() {
@@ -14,6 +16,9 @@ export default function Timer() {
   const [sessionTime, setSessionTime] = useState<number>(25);
   const [breakTime, setBreakTime] = useState<number>(5);
   const [maxTime, setMaxTime] = useState<number>(0);
+  const [playSound] = useSound(alarm);
+
+  
 
   useInterval(() => setTime(time - 1000), isActive ? 1000: 0);
   
@@ -36,7 +41,6 @@ export default function Timer() {
   },[time, mode, sessionTime, breakTime,maxTime]);
 
   const handleReset = () => {
-    
     setIsActive(false)
     setMode('session')
     setBreakTime(5)
