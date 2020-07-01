@@ -6,6 +6,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import moment from 'moment'
 import './index.css';
+import { debug, Console } from 'console';
 const alarm = './alarm.mp3';
 
 
@@ -16,7 +17,8 @@ export default function Timer() {
   const [sessionTime, setSessionTime] = useState<number>(25);
   const [breakTime, setBreakTime] = useState<number>(5);
   const [maxTime, setMaxTime] = useState<number>(0);
-  const [playSound] = useSound(alarm);
+  const [playOn, {stop}] = useSound(alarm);
+  const [isChecked, setIsChecked] = useState(false);
 
   
 
@@ -61,7 +63,20 @@ const pause = <p>Pause</p>;
       <button id="play-pause" onClick={() =>{setIsActive(!isActive)}}>
         {isActive? pause: play}
       </button>
-      <button id="reset" onClick={() =>{handleReset()}}>Reset</button>
+      <button id="reset" 
+        onMouseEnter={() =>{
+          setIsChecked(true);
+          playOn();
+          console.log("entrou aqui e")
+        }}
+        onMouseLeave={() =>{
+          setIsChecked(false);
+          stop();
+          console.log("saiu")
+        }}
+        onClick={() =>handleReset()}>Reset
+      </button>
+      
      
       <CircularProgressbar 
         value={maxTime-time} 
