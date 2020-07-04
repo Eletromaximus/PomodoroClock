@@ -6,8 +6,9 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import moment from 'moment'
 import './index.css';
-import { debug, Console } from 'console';
-const alarm = './alarm.mp3';
+//const alarm = './alarm.mp3';
+//@ts-ignore
+import sound from './ds_digital/alarm.mp3';
 
 
 export default function Timer() {
@@ -17,7 +18,7 @@ export default function Timer() {
   const [sessionTime, setSessionTime] = useState<number>(25);
   const [breakTime, setBreakTime] = useState<number>(5);
   const [maxTime, setMaxTime] = useState<number>(0);
-  const [playOn, {stop}] = useSound(alarm);
+  const [playOn, {stop}] = useSound(sound);
   const [isChecked, setIsChecked] = useState(false);
 
   
@@ -60,14 +61,16 @@ const pause = <p>Pause</p>;
       <h2 className="Title">Pomodoro Timer</h2>
       <h2 className="Clock">{moment(time).format('mm:ss')}</h2>
 
+     
+
       <button id="play-pause" onClick={() =>{setIsActive(!isActive)}}>
         {isActive? pause: play}
       </button>
+
       <button id="reset" 
         onMouseEnter={() =>{
           setIsChecked(true);
           playOn();
-          console.log("entrou aqui e")
         }}
         onMouseLeave={() =>{
           setIsChecked(false);
@@ -91,5 +94,6 @@ const pause = <p>Pause</p>;
       />
       
     </div>
+    
   );
 }
