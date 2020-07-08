@@ -17,7 +17,7 @@ export default function App() {
   const [sessionTime, setSessionTime] = useState<number>(25);
   const [breakTime, setBreakTime] = useState<number>(5);
   const [maxTime, setMaxTime] = useState<number>(0);
-  const [playOn, {stop}] = useSound(sound, {volume: 0.5});
+  const [playOn] = useSound(sound, {volume: 0.5});
 
   
 
@@ -30,18 +30,21 @@ export default function App() {
   useEffect(() =>{
     if (time ===0) {
       if(mode === 'session'){
+        playOn();
         setMode('break');
         setTime(breakTime*60*1000);
         setMaxTime(breakTime*60*1000);
-      } else if (mode === 'break'){
+        
+      } else if (mode === 'break'){       
         setMode('session');
         setTime(sessionTime*60*1000);
         setMaxTime(sessionTime*60*1000);
       }
     }
-  },[time, mode, sessionTime, breakTime,maxTime]);
+  },[time, mode, sessionTime, breakTime,maxTime, playOn]);
 
   const handleReset = () => {
+    
     setIsActive(false)
     setMode('session')
     setBreakTime(5)
@@ -65,15 +68,7 @@ const pause = <p>Pause</p>;
         {isActive? pause: play}
       </button>
 
-      <button id="reset" 
-        onMouseEnter={() =>{
-          playOn();
-        }}
-        onMouseLeave={() =>{
-          stop();
-        }}
-        onClick={() =>handleReset()}>Reset
-      </button>
+      <button id="reset" onClick={() =>handleReset()}>Reset</button>
       
      
       <CircularProgressbar 
