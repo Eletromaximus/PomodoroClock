@@ -52,11 +52,6 @@ export default function App() {
     setTime(25 * 60 * 1000)
   }
 
-  
-
-const play = <p>Play</p>;
-const pause = <p>Pause</p>;
-
   return (
     <div className="Timer">
       <h2 className="Title">Pomodoro Timer</h2>
@@ -65,7 +60,7 @@ const pause = <p>Pause</p>;
      
 
       <button id="play-pause" onClick={() =>{setIsActive(!isActive)}}>
-        {isActive? pause: play}
+        {isActive? <p>Pause</p>: <p>Play</p>}
       </button>
 
       <button id="reset" onClick={() =>handleReset()}>Reset</button>
