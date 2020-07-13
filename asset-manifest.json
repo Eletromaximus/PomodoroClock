@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3b2e3a7c.chunk.css",
+    "main.js": "/static/js/main.e39a6a47.chunk.js",
+    "main.js.map": "/static/js/main.e39a6a47.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.6196b316.js",
+    "runtime-main.js.map": "/static/js/runtime-main.6196b316.js.map",
+    "static/css/2.f524894f.chunk.css": "/static/css/2.f524894f.chunk.css",
+    "static/js/2.104989f7.chunk.js": "/static/js/2.104989f7.chunk.js",
+    "static/js/2.104989f7.chunk.js.map": "/static/js/2.104989f7.chunk.js.map",
+    "static/js/3.128f103c.chunk.js": "/static/js/3.128f103c.chunk.js",
+    "static/js/3.128f103c.chunk.js.map": "/static/js/3.128f103c.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.fd58d983396e11319da82ffca0547d43.js": "/precache-manifest.fd58d983396e11319da82ffca0547d43.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.f524894f.chunk.css.map": "/static/css/2.f524894f.chunk.css.map",
+    "static/css/main.3b2e3a7c.chunk.css.map": "/static/css/main.3b2e3a7c.chunk.css.map",
+    "static/js/2.104989f7.chunk.js.LICENSE.txt": "/static/js/2.104989f7.chunk.js.LICENSE.txt",
+    "static/js/3.128f103c.chunk.js.LICENSE.txt": "/static/js/3.128f103c.chunk.js.LICENSE.txt",
+    "static/media/377639__danarobinsondesignsgmailcom__b15.mp3": "/static/media/377639__danarobinsondesignsgmailcom__b15.19700b73.mp3",
+    "static/media/App.css": "/static/media/DS-DIGIB.1467e2d3.TTF"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6196b316.js",
+    "static/css/2.f524894f.chunk.css",
+    "static/js/2.104989f7.chunk.js",
+    "static/css/main.3b2e3a7c.chunk.css",
+    "static/js/main.e39a6a47.chunk.js"
+  ]
+}
