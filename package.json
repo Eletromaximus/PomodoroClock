@@ -16,7 +16,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "glob-parent": "^6.0.0",
+    "glob-parent": "^6.0.1",
     "moment": "^2.29.1",
     "react": "^17.0.1",
     "react-circular-progressbar": "^2.0.3",
