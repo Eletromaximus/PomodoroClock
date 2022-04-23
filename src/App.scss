@@ -66,16 +66,16 @@ body {
   }
 }
 
-.minutes,
-.seconds,
+.work,
+.breaks,
 .sessions {
       display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.box-minutes,
-.box-seconds,
+.box-work,
+.box-breaks,
 .box-sessons {
   display: grid;
   align-items: center;
@@ -88,8 +88,8 @@ body {
   height: 150px;
 }
 
-.set-minutes,
-.set-seconds,
+.set-work,
+.set-breaks,
 .set-sessions {
   display: flex;
   align-items: center;

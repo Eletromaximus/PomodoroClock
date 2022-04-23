@@ -8,111 +8,128 @@ import './App.scss'
 // import sound from './Timer/377639__danarobinsondesignsgmailcom__b15.mp3'
 
 export default function App () {
-  const [minutes, setMinutes] = useState(24)
-  const [seconds, setSeconds] = useState(59)
+  const [work, setWork] = useState(25)
+  const [breaks, setBreaks] = useState(5)
   const [sessions, setSessions] = useState(1)
-  const [displayMessage, setDisplayMessage] = useState(false)
-  const [pause, setPause] = useState(false)
+  const [isWork, setIsWork] = useState(true)
+  const [pause, setPause] = useState(true)
+  const [memory, setMemory] = useState({
+    work,
+    breaks,
+    sessions
+  })
   // const [playOn] = useSound(sound, { volume: 0.5 })
 
-  const timerMinutes = minutes < 10 ? `0${minutes}` : minutes.toString()
-  const timerSeconds = seconds < 10 ? `0${seconds}` : seconds.toString()
+  const timerMinutes = work < 10 ? `0${work}` : work.toString()
+  const timerSeconds = breaks < 10 ? `0${breaks}` : breaks.toString()
 
-  function reducerProp (number: number) {
+  function reducerProp (number: number, type: string) {
     if (number > 0) {
+      setMemory({
+        ...memory,
+        [type]: (number - 1)
+      })
       return number - 1
     } else {
       return 0
     }
   }
 
-  function addProp (number: number) {
+  function addProp (number: number, type: string) {
     if (number > 60) {
       return 1
     } else {
+      setMemory({
+        ...memory,
+        [type]: (number + 1)
+      })
+
       return (number += 1)
     }
   }
 
   useEffect(() => {
-    if (pause && sessions > 0) {
+    if (pause && sessions >= 0) {
       const interval = setInterval(() => {
         clearInterval(interval)
-        if (seconds === 0) {
-          if (minutes !== 0) {
-            setSeconds(59)
-            setMinutes(minutes - 1)
-          } else {
-            const minutes = displayMessage ? 24 : 4
-            const seconds = 59
 
-            setSeconds(seconds)
-            setMinutes(minutes)
-            setSessions(sessions - 1)
-            setDisplayMessage(!displayMessage)
-          }
+        if (work !== 0) {
+          setWork(work - 1)
         } else {
-          setSeconds(seconds - 1)
+          if (sessions === 0) {
+            setPause(true)
+            setSessions(1)
+            setWork(memory.work)
+            setIsWork(true)
+            return
+          }
+          const register = isWork === true
+            ? breaks
+            : memory.work
+
+          setWork(register)
+          setSessions(sessions - 1)
+          setIsWork(!isWork)
         }
-      }, 1000)
+      }, 60000)
     }
-  }, [seconds, pause])
+  }, [pause, work])
 
   return (
     <div className="Timer">
       <span className="Title">Pomodoro</span>
 
       <div className='box-timer'>
-        <div className="minutes">
-          <span>Minutes</span>
-          <div className="set-minutes">
+        <div className="work">
+          <span>Trabalho</span>
+          <div className="set-work">
             <button
-              disabled={pause}
-              className="add-minutes"
-              onClick={() => setMinutes(addProp(minutes))}
+              disabled={!pause}
+              className="add-work"
+              onClick={() => setWork(addProp(work, 'work'))}
             >
               <ArrowCircleUpIcon fontSize='large' />
             </button>
 
             <div
-              className='box-minutes'
+              className='box-work'
             >
               {timerMinutes}
             </div>
 
             <button
-              disabled={pause}
-              className="rm-minutes"
-              onClick={() => setMinutes(reducerProp(minutes))}
+              disabled={!pause}
+              className="rm-work"
+              onClick={() => setWork(reducerProp(work, 'work'))}
             >
               <ArrowCircleDownIcon fontSize='large' />
             </button>
           </div>
         </div>
 
-        <div className="seconds">
-          <span>Seconds</span>
+        <div className="breaks">
+          <span>Pausa</span>
           <div
-            className="set-seconds"
+            className="set-breaks"
           >
             <button
-              disabled={pause}
-              className="add-seconds"
-              onClick={() => setSeconds(addProp(seconds))}
+              disabled={!pause}
+              className="add-breaks"
+              onClick={() => setBreaks(addProp(breaks, 'breaks'))}
             >
               <ArrowCircleUpIcon fontSize='large' />
             </button>
 
             <div
-              className='box-seconds'
+              className='box-breaks'
             >
               {timerSeconds}
             </div>
 
             <button
-              disabled={pause}
-              className="rm-seconds"
-              onClick={() => setSeconds(reducerProp(seconds))}
+              disabled={!pause}
+              className="rm-breaks"
+              onClick={() => setBreaks(reducerProp(breaks, 'breaks'))}
             >
               <ArrowCircleDownIcon fontSize='large' />
             </button>
@@ -120,12 +137,12 @@ export default function App () {
         </div>
 
         <div className="sessions">
-          <span>Sessions</span>
+          <span>Sessões</span>
           <div className="set-sessions">
             <button
-              disabled={pause}
+              disabled={!pause}
               className="add-sessions"
-              onClick={() => setSessions(addProp(sessions))}
+              onClick={() => setSessions(addProp(sessions, 'sessions'))}
             >
               <ArrowCircleUpIcon fontSize='large' />
             </button>
@@ -137,9 +154,9 @@ export default function App () {
             </div>
 
             <button
-              disabled={pause}
+              disabled={!pause}
               className="rm-sessions"
-              onClick={() => setSessions(reducerProp(sessions))}
+              onClick={() => setSessions(reducerProp(sessions, 'sessions'))}
             >
               <ArrowCircleDownIcon fontSize='large' />
             </button>
@@ -147,16 +164,10 @@ export default function App () {
         </div>
       </div>
       <button
-        onClick={() => {
-          if (sessions > 0) {
-            setPause(!pause)
-          } else {
-            setPause(false)
-          }
-        }}
+        onClick={() => setPause(false)}
         className="Clock"
       >
-        {pause === true ? 'Pausar' : 'Continuar'}
+        {pause === false ? 'Pausar' : 'Continuar'}
       </button>
     </div>
   )
