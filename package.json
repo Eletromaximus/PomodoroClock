@@ -9,7 +9,8 @@
   "private": false,
   "homepage": "https://eletromaximus.github.io/PomodoroClock",
   "scripts": {
-    "deploy": "npm run build && ./node_modules/.bin/gh-pages -d build",
+    "redeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -31,6 +32,7 @@
     "eslint-plugin-n": "^15.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.29.4",
+    "gh-pages": "^3.2.3",
     "husky": "^7.0.4",
     "typescript": "^4.6.3"
   },
