@@ -4,4 +4,8 @@ Relógio Pomodoro simples, feito com Typescript, React e Sass
 
 O projeto pode visto na pagina estática: https://eletromaximus.github.io/PomodoroClock/
 
-![pomodoro](https://github.com/Eletromaximus/PomodoroClock/blob/master/pomodoro.png)
+![Pomodoro](https://github.com/Eletromaximus/PomodoroClock/blob/master/Pomodoro.png)
+
+
+![descanco](https://github.com/Eletromaximus/PomodoroClock/blob/master/descanco.png)
+
