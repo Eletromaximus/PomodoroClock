@@ -18,7 +18,6 @@ export function HomePage ({ changePage }: IHomePage) {
     setWork,
     setSessions
   } = useContext(TimerContext)
-  // const [playOn] = useSound(sound, { volume: 0.5 })
 
   const timerMinutes = work < 10 ? `0${work}` : work.toString()
   const timerBreaks = breaks < 10

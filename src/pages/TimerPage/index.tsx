@@ -2,12 +2,16 @@ import { useContext, useEffect, useState } from 'react'
 import { TimerContext } from '../../Provider/TimerProvider'
 import PlayCircleIcon from '@mui/icons-material/PlayCircle'
 import './styles.scss'
+import useSound from 'use-sound'
+
+import sound from './sound.mp3'
 
 interface ITimePage {
   pageChange: () => void
 }
 
 export function TimerPage ({ pageChange }: ITimePage) {
+  const [playOn] = useSound(sound)
   const {
     work,
     breaks,
@@ -56,12 +60,14 @@ export function TimerPage ({ pageChange }: ITimePage) {
               setPause(true)
               setSessions(1)
               setBar(1)
+              playOn()
               pageChange()
             } else {
               const register = isWork === true
                 ? (breaks)
                 : (minutes)
 
+              playOn()
               setMinutes(register)
               setSessions(sessions - 1)
               setIsWork(!isWork)
@@ -78,7 +84,7 @@ export function TimerPage ({ pageChange }: ITimePage) {
       <header className='cabecario'>
         <h1>Pomodoro</h1>
 
-        <button className="pause"
+        <button className='pause'
           onClick={() => setPause(!pause)}
         >
           <PlayCircleIcon fontSize='large' />
@@ -90,17 +96,17 @@ export function TimerPage ({ pageChange }: ITimePage) {
       </header>
 
       <div className='content'>
-        <div className="timer">
+        <div className='timer'>
           <h1>{textMinutes}:{textSeconds}</h1>
 
-          <div id="myProgress">
-            <div id="myBar" style={{
+          <div id='myProgress'>
+            <div id='myBar' style={{
               width: `${barProgress}%`
             }} />
           </div>
         </div>
 
-        <div className="infos">
+        <div className='infos'>
           {message}
         </div>
       </div>
