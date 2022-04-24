@@ -25,7 +25,6 @@
     "@types/react-dom": "^18.0.1",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
-    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.13.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
@@ -58,10 +57,5 @@
     "react-scripts": "^5.0.1",
     "sass": "^1.50.1",
     "use-sound": "^4.0.1"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
